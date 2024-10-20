@@ -1,0 +1,172 @@
+@font-face {
+    font-family: "Helvetica Bold";
+    src: url("./Fonts/HelveticaNowDisplay-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Helvetica Medium";
+    src: url("./Fonts/HelveticaNowDisplay-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Helvetica Regular";
+    src: url("./Fonts/HelveticaNowDisplay-Regular.ttf");
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.top .left {
+    min-height: 360px;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EC536F;
+    border-radius: 6px;
+}
+
+.top .left .left-container {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.top .left .left-container .icon {
+    padding: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+    position: relative;
+    z-index: 1;
+}
+
+/* Breathing Animation */
+@keyframes breathing {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1)
+    }
+}
+
+.top .left .left-container .icon::before {
+    content: "";
+    width: 192px;
+    height: 192px;
+    border-radius: 50%;
+    background: rgba(240, 240, 240, 0.52);
+    position: absolute;
+    z-index: -1;
+    animation: breathing 4s ease infinite;
+}
+
+.left-container .icon svg {
+    animation: breathing 5s ease infinite;
+}
+
+.top .left .left-container .reading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: -27px;
+}
+
+.top .left .left-container .reading h2 {
+    font-family: "Helvetica Bold", Arial, Helvetica, sans-serif;
+    font-size: 96px;
+    color: #ffffff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.top .left .left-container .reading small {
+    font-family: "Helvetica Bold", Arial, Helvetica, sans-serif;
+    font-size: 32px;
+    color: rgba(240, 240, 240, 0.52);
+    text-align: center;
+
+}
+
+.top .right {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #F1F1F4;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.top .right #myChart {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 360px;
+}
+
+.bottom {
+    margin-top: 20px;
+    height: calc(100% - 380px);
+}
+
+.bottom table {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border-spacing: 0 0;
+}
+
+.bottom table thead tr th {
+    font-family: "Helvetica Medium", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    border: 1.5px solid #F1F1F4;
+    margin: 0;
+    padding: 5px 10px;
+}
+
+.bottom table tbody tr td{
+    font-family: "Helvetica Regular", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    /* border-left: 1.5px solid #e7e7e9;
+    border-right: 1.5px solid #F1F1F4;
+    border-bottom: 1.5px solid #F1F1F4; */
+    border-radius: 0;
+    padding: 5px 10px;
+}
+
+@media screen and (max-width: 1370px) {
+    .top .left{
+        width: 100%;
+    }
+
+    .top .right {
+        width: 100%;
+    }
+
+    .top{
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 668px) {
+    .top .left .left-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .top .left {
+        min-height: 460px;
+    }
+}

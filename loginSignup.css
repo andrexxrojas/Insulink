@@ -1,0 +1,212 @@
+@font-face {
+    font-family: "Helvetica Bold";
+    src: url("./Fonts/HelveticaNowDisplay-Bold.ttf");
+}
+
+@font-face {
+    font-family: "Helvetica Medium";
+    src: url("./Fonts/HelveticaNowDisplay-Medium.ttf");
+}
+
+@font-face {
+    font-family: "Helvetica Regular";
+    src: url("./Fonts/HelveticaNowDisplay-Regular.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    height: calc(100vh - 40px);
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: 100%;
+}
+
+.left-side {
+    border-radius: 8px;
+    width: 100%;
+    background-color:hsla(263,74%,78%,1);
+    background-image:
+        radial-gradient(at 62% 53%, hsla(263,74%,78%,0.64) 0px, transparent 50%),
+        radial-gradient(at 41% 31%, hsla(338,81%,87%,0) 0px, transparent 50%),
+        radial-gradient(at 6% 0%, hsla(338,81%,87%,1) 0px, transparent 50%),
+        radial-gradient(at 4% 97%, hsla(338,81%,87%,1) 0px, transparent 50%),
+        radial-gradient(at 98% 1%, hsla(28,91%,56%,1) 0px, transparent 50%);
+}
+
+.right-side {
+    min-width: 550px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F4F3F8;
+    border-radius: 8px;
+}
+
+.box {
+    margin: 0 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.box .page-identifier {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.box .page-identifier span{
+    font-family: "Helvetica Bold", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    background-color: #E0D2F5;
+    color: #C09EF2;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.box h2 {
+    font-family: "Helvetica Bold", Arial, Helvetica, sans-serif;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.box .page-info {
+    font-family: "Helvetica Regular", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    max-width: 412px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form input {
+    font-family: "Helvetica Regular", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background-color: #F4F3F8;
+    border: 1px solid #A5A8AD;
+    border-radius: 8px;
+    padding: 18px 20px;
+    outline: none;
+}
+
+form button {
+    font-family: "Helvetica Medium", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background-color: #121213;
+    color: #F1F1F4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0 15px 0;
+    padding: 18px 0;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    user-select: none;
+    cursor: pointer;
+}
+
+.box .page-redirect {
+    font-family: "Helvetica Regular", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+    color: #121213;
+    width: fit-content;
+}
+
+.box .page-redirect:nth-child(6) {
+    margin-top: 5px;
+}
+
+/* Seperators */
+.seperator {
+    display: flex;
+    gap: 20px;
+}
+
+.seperator input[type="number"],
+.seperator select {
+    flex: 1;
+    width: 100%; /* Ensure both elements fill the same space */
+    padding: 18px 20px; /* Matching padding for consistency */
+    font-family: "Helvetica Regular", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background-color: #F4F3F8;
+    border: 1px solid #A5A8AD;
+    border-radius: 8px;
+    outline: none;
+}
+
+.seperator select, 
+.seperator input[type="number"] {
+    box-sizing: border-box; /* Prevent padding from affecting width */
+}
+
+.seperator div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.seperator div input[type="radio"] {
+    appearance: none;
+
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    border: 1px solid #A5A8AD;
+    position: relative;
+}
+
+.seperator div input[type="radio"]:checked::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #121213;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.seperator div label {
+    font-family: "Helvetica Regular", Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #7E8084;
+}
+
+#gender{
+    appearance: none;
+    color: #7E8084; /* Change color for the default option */
+}
+
+#gender option {
+    color: #121213;
+}
+
+#gender:not(:invalid) {
+    color: #121213; /* Change the color once a valid option is selected */
+}
