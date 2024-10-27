@@ -313,6 +313,28 @@ nav.inactive ul li p {
     background-color: #F78D2D;
 }
 
+.notif-num {
+    position: absolute;
+    left: 14px;
+    top: -3px;
+    background-color: #EC536F;
+    color: #FFFFFF;
+    width: fit-content;
+    height: 17px;
+    min-width: 17px;
+    padding: 5px 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border: 1.5px solid #FFFFFF;
+}
+
+.notif-num small {
+    font-family: "Helvetica Medium", Arial, Helvetica, sans-serif;
+    font-size: 9.73px;
+}
+
 /* Admin Styling */
 .search-input {
     width: 100%;
@@ -342,6 +364,10 @@ nav.inactive ul li p {
     font-family: "Helvetica Regular", Arial, Helvetica, sans-serif;
     font-size: 14px;
     padding: 15px 15px;
+}
+
+.container table tbody tr td:nth-child(3) {
+    max-width: 80px;
 }
 
 .container table tbody tr td a {
