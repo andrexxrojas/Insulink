@@ -89,6 +89,9 @@
                     <div class="hover-info">
                         <small>Notifications</small>
                     </div>
+                    <div class="notif-num">
+                        <small>0</small>
+                    </div>
                 </li>
                 <li>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="25" viewBox="0 0 20 25" fill="none">
@@ -118,6 +121,16 @@
     </header>
 
     <div class="container">
+        <div class="legend-btn">
+            <small>Legend</small>
+
+            <div class="legend-info">
+                <span>Lorem ipsum</span>
+                <span>Lorem ipsum</span>
+                <span>Lorem ipsum</span>
+            </div>
+        </div>
+
         <div class="top">
             <div class="left" style="background-color: #74BDE8">
                 <div class="left-container">
@@ -151,28 +164,28 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>60</td>
-                        <td>6:34</td>
-                        <td>10/20/2024</td>
-                        <td>Stable</td>
+                        <td data-label="Value">60</td>
+                        <td data-label="Time">6:34</td>
+                        <td data-label="Date">10/20/2024</td>
+                        <td data-label="Status">Stable</td>
                     </tr>
                     <tr>
-                        <td>60</td>
-                        <td>6:34</td>
-                        <td>10/20/2024</td>
-                        <td>Stable</td>
+                        <td data-label="Value">60</td>
+                        <td data-label="Time">6:34</td>
+                        <td data-label="Date">10/20/2024</td>
+                        <td data-label="Status">Stable</td>
                     </tr>
                     <tr>
-                        <td>60</td>
-                        <td>6:34</td>
-                        <td>10/20/2024</td>
-                        <td>Stable</td>
+                        <td data-label="Value">60</td>
+                        <td data-label="Time">6:34</td>
+                        <td data-label="Date">10/20/2024</td>
+                        <td data-label="Status">Stable</td>
                     </tr>
                     <tr>
-                        <td>60</td>
-                        <td>6:34</td>
-                        <td>10/20/2024</td>
-                        <td>Stable</td>
+                        <td data-label="Value">60</td>
+                        <td data-label="Time">6:34</td>
+                        <td data-label="Date">10/20/2024</td>
+                        <td data-label="Status">Stable</td>
                     </tr>
                 </tbody>
             </table>
@@ -194,5 +207,27 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./oxygenMonitor.js"></script>
+    <script>
+        let legendBtn = document.querySelector(".legend-btn")
+        let legendInfo = document.querySelector(".legend-btn .legend-info")
+
+        legendBtn.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent click event from bubbling up to body
+            let display = window.getComputedStyle(legendInfo).display;
+
+            if (display === "none") {
+                legendInfo.style.display = "flex";
+            } else {
+                legendInfo.style.display = "none";
+            }
+        });
+
+        // Hide legendInfo when clicking outside of it
+        document.body.addEventListener("click", (e) => {
+            if (legendInfo.style.display !== "none" && !legendInfo.contains(e.target) && !legendBtn.contains(e.target)) {
+                legendInfo.style.display = "none";
+            }
+        });
+    </script>
 </body>
 </html>

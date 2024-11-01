@@ -146,6 +146,28 @@
     padding: 5px 10px;
 }
 
+.notif-num {
+    position: absolute;
+    left: 14px;
+    top: -3px;
+    background-color: #EC536F;
+    color: #FFFFFF;
+    width: fit-content;
+    height: 17px;
+    min-width: 17px;
+    padding: 5px 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    border: 1.5px solid #FFFFFF;
+}
+
+.notif-num small {
+    font-family: "Helvetica Medium", Arial, Helvetica, sans-serif;
+    font-size: 9.73px;
+}
+
 @media screen and (max-width: 1370px) {
     .top .left{
         width: 100%;

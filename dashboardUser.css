@@ -33,6 +33,7 @@ header {
     left: 0;
     height: 100%;
     z-index: 1000;
+    background-color: #FFFFFF;
 }
 
 nav {
@@ -297,19 +298,19 @@ nav.inactive ul li p {
     justify-content: space-between;
 }
 
-.grid-container .box:hover svg {
+.grid-container .box:not(.profile):hover svg {
     fill: #ffffff;
 }
 
-.grid-container .box:nth-child(1):hover {
+.grid-container .box:nth-child(2):hover {
     background-color: #EC536F;
 }
 
-.grid-container .box:nth-child(2):hover {
+.grid-container .box:nth-child(3):hover {
     background-color: #74BDE8;
 }
 
-.grid-container .box:nth-child(3):hover {
+.grid-container .box:nth-child(4):hover {
     background-color: #F78D2D;
 }
 
@@ -350,48 +351,45 @@ nav.inactive ul li p {
     width: 100%;
     max-width: 1500px;
     border-spacing: 0 5px;
+    border-collapse: collapse;
+    table-layout: fixed;
 }
 
-.container table thead tr th{
-    font-family: "Helvetica Medium", Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    text-align: left;
-    padding: 15px;
+.container table caption {
+    font-size: 1.5em;
 }
 
-.container table tbody tr td{
+.container table tr {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+}
+
+.container table th,
+.container table td {
+    padding: .625em;
+    text-align: center;
     font-family: "Helvetica Regular", Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    padding: 15px 15px;
+    font-weight: 500;
+    font-size: 0.85em;
+    text-align: left;
 }
 
-.container table tbody tr td:nth-child(3) {
-    max-width: 80px;
+.container table th {
+    font-family: "Helvetica Bold", Arial, Helvetica, sans-serif;
+    font-size: .75em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
 }
 
-.container table tbody tr td a {
-    padding: 8px 10px;
-    background-color: #121213;
+.container table tr td a {
+    padding: 6px 8px;
     text-decoration: none;
-    color: #ffffff;
+    color: inherit;
     border-radius: 6px;
-    user-select: none;
+    background-color: #121213;
+    color: #ffffff;
 }
 
-tbody tr:hover td {
-    background-color: #F1F1F4;
-}
-
-tbody tr td:first-child {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
-
-tbody tr td:last-child {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-}
 
 .notification-menu {
     position: fixed;
@@ -437,15 +435,84 @@ tbody tr td:last-child {
     text-overflow: ellipsis;
 }
 
+.profile-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.profile-container .profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+    border-radius: 6px;
+    background-color: #FFFFFF;
+    color: #121213;
+    border: 1.5px solid #676D7C;
+}
+
+.profile-container .profile .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-container .profile .icon svg{
+    width: 34px;
+    height: 34px;
+}
+
+.profile-container .profile .profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.profile-container .profile .profile-info .label {
+    font-family: "Helvetica Medium", Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.profile-container .profile .profile-info .info {
+    font-family: "Helvetica Regular", Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+/* .grid-container .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start; 
+    text-decoration: none; 
+    color: #fff; 
+    padding: 20px; 
+    border-radius: 6px; 
+    background-color: #121213;
+    width: 100%;
+    height: 100%; 
+    position: relative;
+    box-sizing: border-box; 
+    transition: 0.3s ease;
+} */
+
 @media screen and (max-width: 1000px) {
     .grid-container {
         grid-template-columns: 1fr;
+    }
+
+    .container table tbody tr td:nth-child(3) {
+        max-width: unset;
     }
 }
 
 @media screen and (max-width: 743px) {
     .grid-container .box {
         align-items: center; 
+    }
+
+    .grid-container .box:not(.profile) {
         min-height: 350px;
     }
 
@@ -454,4 +521,62 @@ tbody tr td:last-child {
         gap:  10px;
         align-items: center;
     }
+
+    .profile-container {
+        margin-top: 20px;
+    }
+
+    table {
+        border: 0;
+      }
+    
+    table caption {
+        font-size: 1.3em;
+    }
+    
+    table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+      
+    table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+    
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+    }
+    
+    table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a table
+        content: attr(aria-label);
+        */
+        font-family: "Helvetica Bold", Arial, Helvetica, sans-serif;
+        font-weight: 500;
+        content: attr(data-label);
+        float: left;
+        text-transform: uppercase;
+    }
+    
+    table td:last-child {
+        border-bottom: 0;
+    }  
+
+    .container table th,
+    .container table td {
+        text-align: right;
+    }
+
 }
