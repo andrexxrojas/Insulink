@@ -1,55 +1,88 @@
-let nav = document.querySelector("nav")
-let content = document.querySelector(".container")
+let nav = document.querySelector("nav");
+let content = document.querySelector(".container");
+let legendBtn = document.querySelector(".legend-btn");
+let legendInfo = document.querySelector(".legend-btn .legend-info");
+let logo = document.querySelector("nav ul .logo a");
+let burgerMenu = document.querySelector("header .burger");
+let notifContainer = document.querySelector(".notification-menu");
+let notifArr = notifContainer.querySelectorAll("p");
+let notifBtn = document.querySelector("nav ul .notif");
+let notifCloseBtn = document.querySelector(".notif-close-btn");
 
-nav.addEventListener("click", (e) => {
-    if(e.target == nav) {
-        if(nav.classList.contains("inactive")) {
-            nav.classList.remove("inactive")
-            content.style.marginLeft = "236px"
-        } else {
-            nav.classList.add("inactive")
-            content.style.marginLeft = "104px";
-        }
-    }
-})
+logo.addEventListener("click", (e) => e.preventDefault())
+burgerMenu.addEventListener("click", toggleNavActive)
 
-// When clicking on notification menu
-let notifArr = document.querySelectorAll(".notification-menu .notif p");
+function handleNavClick(e) {
+  if (e.target.closest("nav")) {
+    nav.classList.toggle("inactive");
+    content.style.marginLeft = nav.classList.contains("inactive") ? "104px" : "236px";
+  }
+}
 
-notifArr.forEach((notification) => {
-    notification.addEventListener("click", () => {
-        const currentWhiteSpace = window.getComputedStyle(notification).whiteSpace;
-        
-        if(currentWhiteSpace === "nowrap") {
-            notification.style.whiteSpace = "normal";
-        } else {
-            notification.style.whiteSpace = "nowrap";
-        }
-    })
+function toggleNavClickEvent() {
+  if (window.innerWidth > 768) {
+    // notifContainer.style.display = "none"
+    nav.addEventListener("click", handleNavClick);
+    nav.classList.remove("active");
+    content.style.marginLeft = nav.classList.contains("inactive") ? "104px" : "236px";  
+} else {
+    // notifContainer.style.display = "none"
+    nav.removeEventListener("click", handleNavClick);
+    nav.classList.add("inactive");
+    nav.removeEventListener("click", toggleNavActive)
+    nav.addEventListener("click", toggleNavActive)
+
+    content.style.marginLeft = "0px";
+  }
+}
+
+function toggleNavActive() {
+    nav.classList.toggle("active");
+}
+
+toggleNavClickEvent();
+window.addEventListener("resize", toggleNavClickEvent);
+
+legendBtn.addEventListener("click", (e) => {
+  e.stopPropagation(); // Prevent click event from bubbling up to body
+  legendInfo.style.display = legendInfo.style.display === "none" ? "flex" : "none";
 });
 
-// When clicking notification icon
-let notifBtn = document.querySelector("nav ul .notif")
-let notifMenu = document.querySelector(".notification-menu")
+document.body.addEventListener("click", (e) => {
+  if (legendInfo.style.display !== "none" && !legendInfo.contains(e.target) && !legendBtn.contains(e.target)) {
+    legendInfo.style.display = "none";
+  }
+});
 
-notifBtn.addEventListener("click", () => {
-    let notifDisplay = window.getComputedStyle(notifMenu).display
+// Toggle display of notification menu when clicking the notification icon
+notifBtn.addEventListener("click", (e) => {
+  e.stopPropagation(); // Prevent click from bubbling up
+  notifContainer.style.display = notifContainer.style.display === "none" ? "flex" : "none";
+});
 
-    if(notifDisplay == "none") {
-        notifMenu.style.display = "flex"
-    }
+notifCloseBtn.addEventListener("click", () => {
+  notifContainer.style.display = "none";
 })
 
+// Toggle text wrap on individual notification items
+notifArr.forEach((notification) => {
+  notification.addEventListener("click", () => {
+    notification.style.whiteSpace = notification.style.whiteSpace === "nowrap" ? "normal" : "nowrap";
+  });
+});
+
+// Hide notification menu when clicking outside of it
 document.addEventListener("click", (e) => {
-    if (!notifMenu.contains(e.target) && !notifBtn.contains(e.target)) {
-        notifMenu.style.display = "none"
-    }
-})
+  if (!notifContainer.contains(e.target) && !notifBtn.contains(e.target)) {
+    notifContainer.style.display = "none";
+  }
+});
 
-// Prevent menu from closing when clicking inside it
-notifMenu.addEventListener("click", (e) => {
-    e.stopPropagation();
-})
+// Prevent hiding when clicking inside the notification menu
+notifContainer.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
 
 // Populating chart
 document.addEventListener("DOMContentLoaded", function () {

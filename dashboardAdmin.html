@@ -8,6 +8,12 @@
 </head>
 <body>
     <header>
+        <div class="burger">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"/>
+            </svg>
+        </div>
+        
         <nav class="inactive">
             <ul>
                 <div class="logo">
@@ -111,18 +117,40 @@
     <script>
         let nav = document.querySelector("nav")
         let content = document.querySelector(".container")
+        let logo = document.querySelector("nav ul .logo a");
+        let burgerMenu = document.querySelector("header .burger");
 
-        nav.addEventListener("click", (e) => {
-            if(e.target == nav) {
-                if(nav.classList.contains("inactive")) {
-                    nav.classList.remove("inactive")
-                    content.style.marginLeft = "236px"
-                } else {
-                    nav.classList.add("inactive")
-                    content.style.marginLeft = "104px";
-                }
-            }
-        })
+        logo.addEventListener("click", (e) => e.preventDefault())
+        burgerMenu.addEventListener("click", toggleNavActive)
+
+        function handleNavClick(e) {
+        if (e.target.closest("nav")) {
+            nav.classList.toggle("inactive");
+            content.style.marginLeft = nav.classList.contains("inactive") ? "104px" : "236px";
+        }
+        }
+
+        function toggleNavClickEvent() {
+        if (window.innerWidth > 768) {
+            nav.addEventListener("click", handleNavClick);
+            nav.classList.remove("active");
+            content.style.marginLeft = nav.classList.contains("inactive") ? "104px" : "236px";
+        } else {
+            nav.removeEventListener("click", handleNavClick);
+            nav.classList.add("inactive");
+            nav.removeEventListener("click", toggleNavActive)
+            nav.addEventListener("click", toggleNavActive)
+
+            content.style.marginLeft = "0px";
+        }
+        }
+
+        function toggleNavActive() {
+            nav.classList.toggle("active");
+        }
+
+        toggleNavClickEvent();
+        window.addEventListener("resize", toggleNavClickEvent);
 
         document.querySelectorAll("table tbody tr").forEach(row => {
             row.addEventListener("click", () => {

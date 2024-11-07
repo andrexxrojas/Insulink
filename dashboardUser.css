@@ -45,6 +45,13 @@ nav {
     cursor: pointer;
     border-right: 1.5px solid #F1F1F4;
     z-index: 1000;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 nav ul {
@@ -258,6 +265,7 @@ nav.inactive ul li p {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     gap: 20px;
     height: 100%;
     padding-bottom: 20px;
@@ -279,11 +287,13 @@ nav.inactive ul li p {
     position: relative;
     box-sizing: border-box; 
     transition: 0.3s ease;
+    user-select: none;
 }
 
 .grid-container .box svg {
     align-self: center;
     transition: 0.3s ease;
+    fill: #ffffff;
 }
 
 .grid-container .box small {
@@ -302,17 +312,47 @@ nav.inactive ul li p {
     fill: #ffffff;
 }
 
-.grid-container .box:nth-child(2):hover {
+.grid-container .box.profile svg {
+    fill: #121213;
+}
+
+.grid-container .box:nth-child(2) {
     background-color: #EC536F;
 }
 
-.grid-container .box:nth-child(3):hover {
+.grid-container .box:nth-child(3) {
     background-color: #74BDE8;
 }
 
-.grid-container .box:nth-child(4):hover {
+.grid-container .box:nth-child(4) {
     background-color: #F78D2D;
 }
+
+
+.grid-container .box:nth-child(2):hover {
+    background-color: #121213;
+}
+
+.grid-container .box:nth-child(3):hover {
+    background-color: #121213;
+}
+
+.grid-container .box:nth-child(4):hover {
+    background-color: #121213;
+}
+
+.grid-container .box:nth-child(2):hover svg {
+    fill: #EC536F;
+}
+
+.grid-container .box:nth-child(3):hover svg {
+    fill: #74BDE8;
+}
+
+.grid-container .box:nth-child(4):hover svg {
+    fill: #F78D2D;
+}
+
 
 .notif-num {
     position: absolute;
@@ -406,6 +446,25 @@ nav.inactive ul li p {
     gap: 10px;
 }
 
+.notif-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.notif-close-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
 .notification-menu h2 {
     font-family: "Helvetica Medium", Arial, Helvetica, sans-serif;
     font-size: 16px;
@@ -480,22 +539,25 @@ nav.inactive ul li p {
     font-size: 12px;
 }
 
-/* .grid-container .box {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start; 
-    text-decoration: none; 
-    color: #fff; 
-    padding: 20px; 
-    border-radius: 6px; 
-    background-color: #121213;
-    width: 100%;
-    height: 100%; 
-    position: relative;
-    box-sizing: border-box; 
-    transition: 0.3s ease;
-} */
+header .burger {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 22px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+header .burger svg {
+    width: 24px;
+    height: 24px;
+}
 
 @media screen and (max-width: 1000px) {
     .grid-container {
@@ -579,4 +641,87 @@ nav.inactive ul li p {
         text-align: right;
     }
 
+    /* For Mobile Menu */
+    header {
+        background-color: #FFFFFF;
+        height: fit-content;
+    }
+
+    nav {
+        width: 100vw;
+        height: 64px;
+        padding: 20px;
+        background-color: #FFFFFF;
+        border: 1px solid #F1F1F4;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .container {
+        margin-top: 64px;
+        margin-left: 0;
+    }
+
+    /* When Nav Active */
+    nav.active {
+        height: 100vh;
+    }
+
+    /* When Nav Active */
+    header nav ul li { 
+        display: flex;
+    }
+
+    nav.inactive ul li a p {
+        display: block;
+    }
+
+    nav.inactive ul li p {
+        display: block;
+    }
+
+    nav ul li {
+        justify-content: flex-start;
+    }
+
+    nav {
+        overflow-y: auto;
+    }
+
+    nav.inactive ul li .hover-info {
+        display: none;
+    }
+
+    .grid-container .box:not(.profile):hover svg {
+        fill: #ffffff;
+    }
+
+    .grid-container .box:nth-child(2):hover {
+        background-color: #EC536F;
+    } 
+
+    .grid-container .box:nth-child(3):hover {
+        background-color: #74BDE8;
+    }
+
+    .grid-container .box:nth-child(4):hover {
+        background-color: #F78D2D;
+    }
+
+    header .burger {
+        display: block;
+    }
+
+    .notification-menu {
+        width: 100%;
+    }
+
+    .legend-btn .legend-info {
+        top: 45px;
+    }
 }
